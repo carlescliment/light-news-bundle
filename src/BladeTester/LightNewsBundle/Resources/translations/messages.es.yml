@@ -2,3 +2,5 @@ bladetester_lightnews.label.news.created: Creado
 bladetester_lightnews.label.news.title: Título
 bladetester_lightnews.label.news.body: Cuerpo
 bladetester_lightnews.label.news.add: Añadir
+
+bladetester_lightnews.system_message.news.add: Se ha creado una nueva noticia

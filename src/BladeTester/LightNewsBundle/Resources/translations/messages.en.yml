@@ -2,3 +2,5 @@ bladetester_lightnews.label.news.created: Created
 bladetester_lightnews.label.news.title: Title
 bladetester_lightnews.label.news.body: Body
 bladetester_lightnews.label.news.add: Add
+
+bladetester_lightnews.system_message.news.add: A piece of news has been created

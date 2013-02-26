@@ -8,13 +8,13 @@ class News implements NewsInterface {
 
 	protected $body;
 
-	protected $created_at;
+	protected $createdAt;
 
-	protected $updated_at;
+	protected $updatedAt;
 
 
     public function __construct() {
-        $this->created = new \DateTime();
+        $this->createdAt = new \DateTime();
     }
 
 	public function getTitle() {
@@ -36,20 +36,20 @@ class News implements NewsInterface {
 	}
 
 	public function getCreatedAt() {
-		return $this->created_at;
+		return $this->createdAt;
 	}
 
 	public function setCreatedAt(\DateTime $created_at) {
-		$this->created_at = $created_at;
+		$this->createdAt = $created_at;
 		return $this;
 	}
 
 	public function getUpdatedAt() {
-		return $this->updated_at;
+		return $this->updatedAt;
 	}
 
 	public function setUpdatedAt(\DateTime $updated_at) {
-		$this->updated_at = $updated_at;
+		$this->updatedAt = $updated_at;
 		return $this;
 	}
 }
