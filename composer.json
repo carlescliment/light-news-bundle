@@ -1,5 +1,5 @@
 {
-    "name": "carlescliment/light-news-bundle",
+    "name": "BladeTester/light-news-bundle",
     "type": "symfony-bundle",
     "description": "A simple, lightweight bundle to handle news or blog posts",
     "keywords": ["blog", "news"],
