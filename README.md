@@ -1,7 +1,7 @@
 LightNewsBundle
 ================
 
-¿Another news/blog bundle? Yes!
+Another news/blog bundle? Yes!
 
 The intention of LightNewsBundle is to provide a lightweight bundle without dependencies to other heavy bundles like Sonata.
 
