@@ -1,0 +1,21 @@
+{
+    "name": "carlescliment/light-news-bundle",
+    "type": "symfony-bundle",
+    "description": "A simple, lightweight bundle to handle news or blog posts",
+    "keywords": ["blog", "news"],
+    "homepage": "https://github.com/carlescliment/light-news-bundle",
+    "license": "Apache2",
+    "authors": [
+        {
+            "name": "Carles Climent Granell",
+            "email": "carlescliment@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/symfony" : ">=2.0.12"
+    },
+    "autoload": {
+        "psr-0": { "BladeTester\\LightweighNewsBundle": "src" }
+    }
+}
