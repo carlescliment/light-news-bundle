@@ -14,7 +14,7 @@
     "require": {
         "php": ">=5.3.2",
         "symfony/symfony" : ">=2.0.12",
-        "sensio/framework-extra-bundle": ">=v2.1.5"
+        "sensio/framework-extra-bundle": ">=v2.1.5",
     },
     "autoload": {
         "psr-0": { "BladeTester\\LightNewsBundle": "src" }

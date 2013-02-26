@@ -2,7 +2,7 @@
 
 namespace BladeTester\LightNewsBundle\Model;
 
-class News {
+class News implements NewsInterface {
 
 	protected $title;
 
