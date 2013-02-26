@@ -5,3 +5,7 @@ news_homepage:
 news_add:
     pattern:  /add
     defaults: { _controller: BladeTesterLightNewsBundle:Admin:add }
+
+news_remove:
+    pattern:  /{id}/remove
+    defaults: { _controller: BladeTesterLightNewsBundle:Admin:remove }

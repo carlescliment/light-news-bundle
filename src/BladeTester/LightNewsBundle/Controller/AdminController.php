@@ -3,7 +3,6 @@
 namespace BladeTester\LightNewsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -19,7 +18,7 @@ class AdminController extends Controller
     public function addAction(Request $request)
     {
         $news = $this->get('blade_tester_light_news.entity.news');
-		$form = $this->createForm($this->get('blade_tester_light_news.forms.news'), $news);
+        $form = $this->createForm($this->get('blade_tester_light_news.forms.news'), $news);
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);
             if ($form->isValid()) {
@@ -32,6 +31,16 @@ class AdminController extends Controller
             }
         }
         return array('form' => $form->createView());
+    }
+
+
+    public function removeAction($id) {
+        $manager = $this->get('blade_tester_light_news.news_manager');
+        $news = $manager->find($id);
+        $manager->remove($news);
+        $translator = $this->get('translator');
+        $this->get('session')->setFlash('notice', $translator->trans('bladetester_lightnews.system_message.news.remove'));
+        return $this->redirect($this->generateUrl('news_homepage'));
     }
 
 
