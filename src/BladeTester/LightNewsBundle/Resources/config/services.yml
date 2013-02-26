@@ -1,0 +1,9 @@
+parameters:
+    #foo: bar
+
+services:
+    blade_tester_light_news.forms.news:
+        class: "%blade_tester_light_news.form.type.news.class%"
+        arguments: ["%blade_tester_light_news.form.type.news.entity%"]
+
+

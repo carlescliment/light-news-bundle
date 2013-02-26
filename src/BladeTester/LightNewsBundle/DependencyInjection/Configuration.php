@@ -4,6 +4,7 @@ namespace BladeTester\LightNewsBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 /**
  * This is the class that validates and merges configuration from your app/config files
@@ -20,10 +21,51 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('blade_tester_light_news');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+                ->scalarNode('driver')->isRequired()->cannotBeEmpty()->end()
+                ->scalarNode('engine')->defaultValue('twig')->end()
+            ->end();
+
+        $this->addClassesSection($rootNode);
+        $this->addServicesSection($rootNode);
 
         return $treeBuilder;
+    }
+
+    /**
+     * Adds `classes` section.
+     *
+     * @param ArrayNodeDefinition $node
+     */
+    private function addClassesSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+                ->arrayNode('classes')
+                    ->isRequired()
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('news')
+                            ->isRequired()
+                            ->children()
+                                ->scalarNode('form')->defaultValue('BladeTester\\LightNewsBundle\\Form\\Type\\NewsFormType')->end()
+                                ->scalarNode('entity')->defaultValue('BladeTester\\LightNewsBundle\\Entity\\News')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
+    }
+
+
+    /**
+     * Adds `services` section.
+     *
+     * @param ArrayNodeDefinition $node
+     */
+    private function addServicesSection(ArrayNodeDefinition $node)
+    {
     }
 }

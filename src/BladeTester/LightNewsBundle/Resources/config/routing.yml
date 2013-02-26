@@ -1,0 +1,7 @@
+news_homepage:
+    pattern:  /
+    defaults: { _controller: BladeTesterLightNewsBundle:Default:index }
+
+news_add:
+    pattern:  /add
+    defaults: { _controller: BladeTesterLightNewsBundle:Admin:add }
