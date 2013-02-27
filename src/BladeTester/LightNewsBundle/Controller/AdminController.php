@@ -17,14 +17,13 @@ class AdminController extends Controller
      */
     public function addAction(Request $request)
     {
-        $news = $this->get('blade_tester_light_news.entity.news');
+        $manager = $this->getNewsManager();
+        $news = $manager->build();
         $form = $this->createForm($this->get('blade_tester_light_news.forms.news'), $news);
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);
             if ($form->isValid()) {
-                $em = $this->getDoctrine()->getEntityManager();
-                $em->persist($news);
-                $em->flush();
+                $manager->persist($news);
                 $translator = $this->get('translator');
                 $this->get('session')->setFlash('notice', $translator->trans('bladetester_lightnews.system_message.news.add'));
                 return $this->redirect($this->generateUrl('news_add'));
@@ -35,12 +34,16 @@ class AdminController extends Controller
 
 
     public function removeAction($id) {
-        $manager = $this->get('blade_tester_light_news.news_manager');
+        $manager = $this->getNewsManager();
         $news = $manager->find($id);
         $manager->remove($news);
         $translator = $this->get('translator');
         $this->get('session')->setFlash('notice', $translator->trans('bladetester_lightnews.system_message.news.remove'));
         return $this->redirect($this->generateUrl('news_homepage'));
+    }
+
+    private function getNewsManager() {
+        return $this->get('blade_tester_light_news.news_manager');
     }
 
 
