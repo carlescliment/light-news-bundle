@@ -6,3 +6,5 @@ bladetester_lightnews.label.news.edit: Editar
 
 bladetester_lightnews.system_message.news.add: Se ha creado una nueva noticia
 bladetester_lightnews.system_message.news.update: La noticia ha sido actualizada
+
+bladetester_lightnews.interfaces.list.no_news: Aún no se han publicado noticias
