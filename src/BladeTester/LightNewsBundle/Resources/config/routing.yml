@@ -9,3 +9,7 @@ news_add:
 news_remove:
     pattern:  /{id}/remove
     defaults: { _controller: BladeTesterLightNewsBundle:Admin:remove }
+
+news_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: BladeTesterLightNewsBundle:Admin:edit }

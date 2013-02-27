@@ -18,8 +18,19 @@ class NewsManager
     }
 
 
-    public function build() {
-        return $this->serviceContainer->get('blade_tester_light_news.entity.news');
+    public function create($title = '', $body = '') {
+        $news = $this->build($title, $body);
+        $om = $this->getObjectManager();
+        $om->persist($news);
+        $om->flush();
+        return $news;
+    }
+
+    public function build($title = '', $body = '') {
+        $news = $this->serviceContainer->get('blade_tester_light_news.entity.news');
+        $news->setTitle($title);
+        $news->setBody($body);
+        return $news;
     }
 
     public function persist(NewsInterface $news) {
@@ -33,6 +44,12 @@ class NewsManager
         $om = $this->getObjectManager();
         $om->remove($news);
         $om->flush();
+    }
+
+    public function refresh(NewsInterface $news)
+    {
+        $om = $this->getObjectManager();
+        $om->refresh($news);
     }
 
     public function find($id) {

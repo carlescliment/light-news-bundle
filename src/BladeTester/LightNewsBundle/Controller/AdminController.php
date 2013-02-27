@@ -42,6 +42,26 @@ class AdminController extends Controller
         return $this->redirect($this->generateUrl('news_homepage'));
     }
 
+    /**
+     * @Template()
+     */
+    public function editAction($id, Request $request) {
+        $manager = $this->getNewsManager();
+        $news = $manager->find($id);
+        $form = $this->createForm($this->get('blade_tester_light_news.forms.news'), $news);
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
+            if ($form->isValid()) {
+                $this->getDoctrine()->getEntityManager()->flush();
+                $translator = $this->get('translator');
+                $this->get('session')->setFlash('notice', $translator->trans('bladetester_lightnews.system_message.news.update'));
+                return $this->redirect($this->generateUrl('news_edit', array('id' => $id)));
+            }
+        }
+        return array('form' => $form->createView(),
+                    'news' => $news);
+    }
+
     private function getNewsManager() {
         return $this->get('blade_tester_light_news.news_manager');
     }

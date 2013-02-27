@@ -1,0 +1,8 @@
+{% extends 'BladeTesterLightNewsBundle:Admin:base.html.twig' %}
+
+{% block body %}
+<form id="news-edit" method="POST" action="{{ url('news_edit', {'id' : news.id}) }}" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <input type="submit" value="{{ 'bladetester_lightnews.label.news.edit'|trans }}" />
+</form>
+{% endblock %}
