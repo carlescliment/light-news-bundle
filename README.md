@@ -1,13 +1,9 @@
 LightNewsBundle
 ================
 
-¿Another news/blog bundle? Yes!
+This bundle provides a lightweight framework to handle news or blog posts without the need of installing other heavy bundles like sonata. The intention of LightNewsBundle is to allow developers adding their own logic without having to deal with the management of CRUD operations.
 
-The intention of LightNewsBundle is to provide a lightweight bundle without dependencies to other heavy bundles like Sonata.
-
-LightNewsBundle works with Symfony 2.1 and works as a unit of work by itself.
-
-You can use it in your blog or in the news section of your web application.
+LightNewsBundle works with Symfony 2.1 and has almost no dependencies.
 
 
 ## Installation
