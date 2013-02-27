@@ -30,9 +30,9 @@ Execute `php composer.phar update carlescliment/light-news-bundle`
 
 ### 3. Modify your `app/config/routing.yml`
 
-blade_tester_light_news_bundle:
-    resource: "@BladeTesterLightNewsBundle/Resources/config/routing.yml"
-    prefix:   /news        #choose the prefix you want
+    blade_tester_light_news_bundle:
+        resource: "@BladeTesterLightNewsBundle/Resources/config/routing.yml"
+        prefix:   /news        #choose the prefix you want
 
 
 ## Configuring your own news bundle
@@ -106,12 +106,12 @@ LightNewsBundle provides the basic CRUD management. It's up to you to handle the
 
 By default, you can access to the following routes:
 
-{prefix}/  -> Homepage
-{prefix}/{id} -> Display a piece of news
-{prefix}/admin -> Admin homepage
-{prefix}/admin/add -> Create a piece of news.
-{prefix}/admin/{id}/remove -> Delete the piece of news with id {id}.
-{prefix}/admin/{id}/edit -> Edits the piece of news with id {id}.
+- {prefix}/  -> Homepage
+- {prefix}/{id} -> Display a piece of news
+- {prefix}/admin -> Admin homepage
+- {prefix}/admin/add -> Create a piece of news.
+- {prefix}/admin/{id}/remove -> Delete the piece of news with id {id}.
+- {prefix}/admin/{id}/edit -> Edits the piece of news with id {id}.
 
 
 ## Overriding the bundle
@@ -127,6 +127,19 @@ Place a controller with the same name in your bundle to override the default beh
 
 ### Routes
 You can also override routes or define new ones.
+
+### Forms
+LightNewsBundle provides a default form to manage the basic entity. If you create your entity with extra fields, you will need to use a custom form. Just configure it in your `app/config/config.yml` file
+
+    blade_tester_light_news:
+        driver: doctrine/orm
+        engine: twig
+        classes:
+            news:
+                entity: Your\NewsBundle\Entity\News
+        forms:
+            news:
+                class: Your\NewsBundle\Form\YourCustomForm
 
 
 ## The manager
