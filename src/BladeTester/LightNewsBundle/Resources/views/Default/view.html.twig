@@ -1,0 +1,5 @@
+{% extends 'BladeTesterLightNewsBundle:Default:base.html.twig' %}
+
+{% block body %}
+    {% include 'BladeTesterLightNewsBundle:Elements:pieceOfNews.html.twig' with {'pieceOfNews' : news} %}
+{% endblock %}

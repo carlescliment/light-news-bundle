@@ -1,1 +1,13 @@
-Hello!
+{% extends 'BladeTesterLightNewsBundle:Default:base.html.twig' %}
+
+{% block body %}
+    {% if not news %}
+        <p>{{ 'bladetester_lightnews.interfaces.list.no_news'|trans }}</p>
+    {% else %}
+        <div id="news-list">
+        {% for pieceOfNews in news %}
+            {% include 'BladeTesterLightNewsBundle:Elements:pieceOfNews.html.twig' with {'pieceOfNews' : pieceOfNews} %}
+        {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

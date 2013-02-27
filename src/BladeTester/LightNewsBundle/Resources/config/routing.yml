@@ -2,14 +2,22 @@ news_homepage:
     pattern:  /
     defaults: { _controller: BladeTesterLightNewsBundle:Default:index }
 
+news_admin_list:
+    pattern:  /admin
+    defaults: { _controller: BladeTesterLightNewsBundle:Admin:list }
+
 news_add:
-    pattern:  /add
+    pattern:  /admin/add
     defaults: { _controller: BladeTesterLightNewsBundle:Admin:add }
 
 news_remove:
-    pattern:  /{id}/remove
+    pattern:  /admin/{id}/remove
     defaults: { _controller: BladeTesterLightNewsBundle:Admin:remove }
 
 news_edit:
-    pattern:  /{id}/edit
+    pattern:  /admin/{id}/edit
     defaults: { _controller: BladeTesterLightNewsBundle:Admin:edit }
+
+news_view:
+    pattern:  /{id}
+    defaults: { _controller: BladeTesterLightNewsBundle:Default:view }

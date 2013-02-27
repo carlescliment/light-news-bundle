@@ -20,14 +20,12 @@ class NewsManager
 
     public function create($title = '', $body = '') {
         $news = $this->build($title, $body);
-        $om = $this->getObjectManager();
-        $om->persist($news);
-        $om->flush();
+        $this->persist($news);
         return $news;
     }
 
     public function build($title = '', $body = '') {
-        $news = $this->serviceContainer->get('blade_tester_light_news.entity.news');
+        $news = clone($this->serviceContainer->get('blade_tester_light_news.entity.news'));
         $news->setTitle($title);
         $news->setBody($body);
         return $news;
@@ -56,12 +54,16 @@ class NewsManager
         return $this->getRepository()->find($id);
     }
 
+    public function findAll() {
+        return $this->getRepository()->findAll();
+    }
+
     public function getClass()
     {
         return $this->class;
     }
 
-    private function getRepository() {
+    public function getRepository() {
         return $this->getObjectManager()->getRepository($this->class);
     }
 

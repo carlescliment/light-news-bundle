@@ -9,35 +9,143 @@ LightNewsBundle works with Symfony 2.1 and works as a unit of work by itself.
 
 You can use it in your blog or in the news section of your web application.
 
-## 1. Modify your `composer.json`
+
+## Installation
+
+### 1. Update your vendors
+
+Add this line to your `composer.json`
 
     "require": {
         "carlescliment/light-news-bundle": "dev-master"
     }
 
-## 2. Load the bundle in `app/AppKernel.php`
+Execute `php composer.phar update carlescliment/light-news-bundle`
+
+### 2. Load the bundle in `app/AppKernel.php`
     $bundles = array(
          // Your other bundles
          new BladeTester\LightNewsBundle\BladeTesterLightNewsBundle(),
     );
 
-## 3. Modify your `app/config/routing.yml`
+### 3. Modify your `app/config/routing.yml`
 
-    blade_tester_light_news:
-        resource: "@BladeTesterLightNewsBundle/Resources/config/routing.yml"
-		prefix:   /news
+blade_tester_light_news_bundle:
+    resource: "@BladeTesterLightNewsBundle/Resources/config/routing.yml"
+    prefix:   /news        #choose the prefix you want
 
 
-## 4. Modify your `app/config/config.yml` file:
+## Configuring your own news bundle
+
+### 1. Create your own bundle overriding LightNewsBundle
+
+    namespace My\NewsBundle;
+
+    use Symfony\Component\HttpKernel\Bundle\Bundle;
+
+    class MyNewsBundle extends Bundle
+    {
+
+       public function getParent()
+        {
+            return 'BladeTesterLightNewsBundle';
+        }
+    }
+
+
+### 2. Map a News class
+
+Create an entity and inherit the base News class. The only mandatory field you have to add is "id" to map your entity properly.
+
+NOTE: At the moment it works only with Doctrine. Contribution to provide other drivers will be very appreciated.
+
+
+    namespace My\NewsBundle\Entity;
+
+    use Doctrine\ORM\Mapping as ORM;
+    use BladeTester\LightNewsBundle\Entity\News as BaseNews;
+
+
+    /**
+     * @ORM\Entity()
+     * @ORM\Table(name="news")
+     */
+    class News extends BaseNews {
+
+        /**
+         * @ORM\Column(name="id", type="integer")
+         * @ORM\Id
+         * @ORM\GeneratedValue(strategy="AUTO")
+         */
+        private $id;
+
+
+        public function getId() {
+            return $this->id;
+        }
+    }
+
+
+### 3. Setup your News class in `app/config/config.yml` file:
 
     blade_tester_light_news:
         driver: doctrine/orm
         engine: twig
         classes:
             news:
-                entity: 'Your\Bundle\Entity\News'
+                entity: 'My\NewsBundle\Entity\News'
 
-## 5. Update your database schema
+### 4. Update your database schema
 
     app/console doctrine:schema:update --force
 
+
+## Basic usage
+
+LightNewsBundle provides the basic CRUD management. It's up to you to handle the security to allow or disallow users to administer news.
+
+By default, you can access to the following routes:
+
+{prefix}/  -> Homepage
+{prefix}/{id} -> Display a piece of news
+{prefix}/admin -> Admin homepage
+{prefix}/admin/add -> Create a piece of news.
+{prefix}/admin/{id}/remove -> Delete the piece of news with id {id}.
+{prefix}/admin/{id}/edit -> Edits the piece of news with id {id}.
+
+
+## Overriding the bundle
+
+LightNewsBundle is aimed to be easily overrideable. You can override it the same way you normally override bundles in Symfony.
+
+### Templates
+Place a template with the same name and in the same dir and Symfony will load it instead of the default one.
+For example, you could override the template Default/base.html.twig and inherit your base app template.
+
+### Controllers
+Place a controller with the same name in your bundle to override the default behaviour
+
+### Routes
+You can also override routes or define new ones.
+
+
+## The manager
+
+If you plan to customize LightNewsBundle, you will probably need to use the NewsManager service. It will be better explained with an example:
+
+
+    public function yourCustomAction()
+    {
+        $manager = $this->get('blade_tester_light_news.news_manager')
+        $news = $manager->build(); // builds a non-persisted instance of your News class.
+        $news = $manager->create('Title', 'body'); // builds and persists a piece of news.
+        $news = $manager->find(33); // Retrieves the instance with id 33 from the database
+        $news = $manager->findAll(); // Retrieves all the instances from the database
+        $manager->remove($news); // Removes a news instance
+        $repository = $manager->getRepository();
+        $repository->yourCustomRepositoryMethod();
+    }
+
+## Contribute and feedback
+
+Please, feel free to provide feedback of this module. Contributions will be much appreciated.

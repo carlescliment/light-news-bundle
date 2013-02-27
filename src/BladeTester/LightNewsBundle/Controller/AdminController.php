@@ -62,6 +62,15 @@ class AdminController extends Controller
                     'news' => $news);
     }
 
+    /**
+     * @Template()
+     */
+    public function listAction() {
+        $manager = $this->getNewsManager();
+        $news = $manager->findAll();
+        return array('news' => $news);
+    }
+
     private function getNewsManager() {
         return $this->get('blade_tester_light_news.news_manager');
     }

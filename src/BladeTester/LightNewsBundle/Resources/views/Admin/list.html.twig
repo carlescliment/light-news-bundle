@@ -1,0 +1,26 @@
+{% extends 'BladeTesterLightNewsBundle:Admin:base.html.twig' %}
+
+{% block body %}
+    {% if not news %}
+        <p>{{ 'bladetester_lightnews.interfaces.list.no_news'|trans }}</p>
+    {% else %}
+        <p>
+            <table id="news-list">
+                <thead>
+                    <tr><th>{{ 'bladetester_lightnews.label.news.title'|trans }}</th>
+                        <th>{{ 'bladetester_lightnews.label.news.body'|trans }}</th>
+                        <th></th></tr>
+                </thead>
+                <tbody>
+                {% for pieceOfNews in news %}
+                    <tr class="pieceOfNews">
+                        <td>{{ pieceOfNews.title }}</td>
+                        <td>{{ pieceOfNews.body|raw }}</td>
+                        <td><a href="{{ path('news_edit', {'id' : pieceOfNews.id}) }}">{{ 'bladetester_lightnews.label.news.edit'|trans }}</a>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </p>
+    {% endif %}
+{% endblock %}

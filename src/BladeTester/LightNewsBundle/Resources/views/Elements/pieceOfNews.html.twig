@@ -1,0 +1,9 @@
+<div class="pieceOfNews">
+    <div class="newsTitle">
+        {{ pieceOfNews.title }}
+        {{ pieceOfNews.createdAt|date('Y-m-d H:i') }}
+    </div>
+    <div class="newsBody">
+        {{ pieceOfNews.body|raw }}
+    </div>
+</div>
