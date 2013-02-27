@@ -31,10 +31,17 @@ class NewsManager
         return $news;
     }
 
+    public function update(NewsInterface $news) {
+        $news->setUpdatedAt(new \DateTime);
+        $this->getObjectManager()->flush();
+        return $news;
+    }
+
     public function persist(NewsInterface $news) {
         $om = $this->getObjectManager();
         $om->persist($news);
         $om->flush();
+        return $news;
     }
 
     public function remove(NewsInterface $news)
@@ -42,12 +49,14 @@ class NewsManager
         $om = $this->getObjectManager();
         $om->remove($news);
         $om->flush();
+        return $news;
     }
 
     public function refresh(NewsInterface $news)
     {
         $om = $this->getObjectManager();
         $om->refresh($news);
+        return $news;
     }
 
     public function find($id) {

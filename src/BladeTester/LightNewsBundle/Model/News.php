@@ -13,9 +13,9 @@ class News implements NewsInterface {
 	protected $updatedAt;
 
 
-    public function __construct() {
-        $this->createdAt = new \DateTime();
-    }
+        public function __construct() {
+            $this->createdAt = new \DateTime();
+        }
 
 	public function getTitle() {
 		return $this->title;

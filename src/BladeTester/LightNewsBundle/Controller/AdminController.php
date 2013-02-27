@@ -52,7 +52,7 @@ class AdminController extends Controller
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);
             if ($form->isValid()) {
-                $this->getDoctrine()->getEntityManager()->flush();
+                $manager->update($news);
                 $translator = $this->get('translator');
                 $this->get('session')->setFlash('notice', $translator->trans('bladetester_lightnews.system_message.news.update'));
                 return $this->redirect($this->generateUrl('news_edit', array('id' => $id)));
