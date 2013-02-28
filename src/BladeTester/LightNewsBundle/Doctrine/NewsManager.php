@@ -59,6 +59,7 @@ class NewsManager
 
     public function refresh(NewsInterface $news)
     {
+        $this->objectManager->refresh($news);
         return $news;
     }
 
@@ -68,6 +69,10 @@ class NewsManager
 
     public function findAll() {
         return $this->repository->findAll();
+    }
+
+    public function getRepository() {
+        return $this->repository;
     }
 
     public function getClass()
