@@ -11,4 +11,4 @@ services:
 
     blade_tester_light_news.news_manager:
         class: "BladeTester\\LightNewsBundle\\Doctrine\\NewsManager"
-        arguments: ["@service_container", '%blade_tester_light_news.form.type.news.entity%']
+        arguments: ["@doctrine.orm.entity_manager", '%blade_tester_light_news.form.type.news.entity%']
