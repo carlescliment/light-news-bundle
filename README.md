@@ -159,8 +159,8 @@ If you plan to customize LightNewsBundle, you will probably need to use the News
 
 ## Credits
 
-* Author: [Carles Climent] [carlescliment]
-* Contributor: [Fran Moreno] [franmomu]
+* Author: [Carles Climent][carlescliment]
+* Contributor: [Fran Moreno][franmomu]
 
 
 ## Contribute and feedback
