@@ -155,6 +155,14 @@ If you plan to customize LightNewsBundle, you will probably need to use the News
         $repository->yourCustomRepositoryMethod();
     }
 
+
+
+## Credits
+
+* Author: [Carles Climent] [carlescliment]
+* Contributor: [Fran Moreno] [franmomu]
+
+
 ## Contribute and feedback
 
 Please, feel free to provide feedback of this bundle. Contributions will be much appreciated.
