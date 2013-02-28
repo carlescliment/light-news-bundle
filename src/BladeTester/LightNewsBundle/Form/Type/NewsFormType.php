@@ -4,6 +4,7 @@ namespace BladeTester\LightNewsBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class NewsFormType extends AbstractType {
 
@@ -37,12 +38,10 @@ class NewsFormType extends AbstractType {
         return 'bladetester_lightnews_news';
     }
 
-
-    public function getDefaultOptions(array $options) {
-        return array(
-          'data_class' => $this->dataClass,
-        );
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => $this->dataClass
+        ));
     }
-
-
 }
