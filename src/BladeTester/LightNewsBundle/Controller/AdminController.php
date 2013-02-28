@@ -21,7 +21,7 @@ class AdminController extends Controller
         $news = $manager->build();
         $form = $this->createForm($this->get('blade_tester_light_news.forms.news'), $news);
         if ($request->getMethod() == 'POST') {
-            $form->bindRequest($request);
+            $form->bind($request);
             if ($form->isValid()) {
                 $manager->persist($news);
                 $translator = $this->get('translator');
@@ -50,7 +50,7 @@ class AdminController extends Controller
         $news = $manager->find($id);
         $form = $this->createForm($this->get('blade_tester_light_news.forms.news'), $news);
         if ($request->getMethod() == 'POST') {
-            $form->bindRequest($request);
+            $form->bind($request);
             if ($form->isValid()) {
                 $manager->update($news);
                 $translator = $this->get('translator');
