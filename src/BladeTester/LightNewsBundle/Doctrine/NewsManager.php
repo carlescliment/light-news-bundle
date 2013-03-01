@@ -71,10 +71,6 @@ class NewsManager
         return $this->repository->findAll();
     }
 
-    public function getRepository() {
-        return $this->repository;
-    }
-
     public function getClass()
     {
         return $this->class;
