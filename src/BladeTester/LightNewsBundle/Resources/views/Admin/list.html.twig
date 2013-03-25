@@ -1,6 +1,8 @@
 {% extends 'BladeTesterLightNewsBundle:Admin:base.html.twig' %}
 
 {% block body %}
+    <a href="{{ path('news_add') }}">{{ 'bladetester_lightnews.label.news.add'|trans }}</a>
+
     {% if not news %}
         <p>{{ 'bladetester_lightnews.interfaces.list.no_news'|trans }}</p>
     {% else %}
@@ -16,7 +18,7 @@
                     <tr class="pieceOfNews">
                         <td>{{ pieceOfNews.title }}</td>
                         <td>{{ pieceOfNews.body|raw }}</td>
-                        <td><a href="{{ path('news_edit', {'id' : pieceOfNews.id}) }}">{{ 'bladetester_lightnews.label.news.edit'|trans }}</a>
+                        <td><a href="{{ path('news_edit', {'id' : pieceOfNews.id}) }}">{{ 'bladetester_lightnews.label.news.edit'|trans }}</a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

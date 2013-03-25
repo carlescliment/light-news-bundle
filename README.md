@@ -149,10 +149,9 @@ If you plan to customize LightNewsBundle, you will probably need to use the News
         $news = $manager->build(); // builds a non-persisted instance of your News class.
         $news = $manager->create('Title', 'body'); // builds and persists a piece of news.
         $news = $manager->find(33); // Retrieves the instance with id 33 from the database
-        $news = $manager->findAll(); // Retrieves all the instances from the database
         $manager->remove($news); // Removes a news instance
-        $repository = $manager->getRepository();
-        $repository->yourCustomRepositoryMethod();
+        $all_news = $manager->findAll(); // Retrieves all the instances from the database
+	$manager->refresh($news); // Uses the entity manager to refresh the item
     }
 
 
