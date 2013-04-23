@@ -23,7 +23,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('driver')->isRequired()->cannotBeEmpty()->end()
+                ->scalarNode('driver')->defaultValue('doctrine/orm')->end()
                 ->scalarNode('engine')->defaultValue('twig')->end()
             ->end();
 
