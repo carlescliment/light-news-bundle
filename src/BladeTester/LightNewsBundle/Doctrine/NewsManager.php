@@ -67,8 +67,8 @@ class NewsManager
         return $this->repository->find($id);
     }
 
-    public function findAll() {
-        return $this->repository->findAll();
+    public function findAll($filters = array(), $order = array()) {
+        return $this->repository->findAll($filters, $order);
     }
 
     public function getClass()
