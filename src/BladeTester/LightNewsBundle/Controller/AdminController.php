@@ -67,7 +67,7 @@ class AdminController extends Controller
      */
     public function listAction() {
         $manager = $this->getNewsManager();
-        $news = $manager->findAll();
+        $news = $manager->findBy(array(), array('createdAt' => 'DESC'));
         return array('news' => $news);
     }
 
