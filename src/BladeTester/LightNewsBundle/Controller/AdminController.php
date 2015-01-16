@@ -25,7 +25,7 @@ class AdminController extends Controller
             if ($form->isValid()) {
                 $manager->persist($news);
                 $translator = $this->get('translator');
-                $this->get('session')->setFlash('notice', $translator->trans('bladetester_lightnews.system_message.news.add'));
+                $this->get('session')->getFlashBag()->add('notice', $translator->trans('bladetester_lightnews.system_message.news.add'));
                 return $this->redirect($this->generateUrl('news_add'));
             }
         }
@@ -38,7 +38,7 @@ class AdminController extends Controller
         $news = $manager->find($id);
         $manager->remove($news);
         $translator = $this->get('translator');
-        $this->get('session')->setFlash('notice', $translator->trans('bladetester_lightnews.system_message.news.remove'));
+        $this->get('session')->getFlashBag()->add('notice', $translator->trans('bladetester_lightnews.system_message.news.remove'));
         return $this->redirect($this->generateUrl('news_homepage'));
     }
 
@@ -54,7 +54,7 @@ class AdminController extends Controller
             if ($form->isValid()) {
                 $manager->update($news);
                 $translator = $this->get('translator');
-                $this->get('session')->setFlash('notice', $translator->trans('bladetester_lightnews.system_message.news.update'));
+                $this->get('session')->getFlashBag()->add('notice', $translator->trans('bladetester_lightnews.system_message.news.update'));
                 return $this->redirect($this->generateUrl('news_edit', array('id' => $id)));
             }
         }
