@@ -133,9 +133,7 @@ LightNewsBundle provides a default form to manage the basic entity. If you creat
         classes:
             news:
                 entity: Your\NewsBundle\Entity\News
-        forms:
-            news:
-                class: Your\NewsBundle\Form\YourCustomForm
+                form: Your\NewsBundle\Form\YourCustomForm
 
 
 ## The manager
